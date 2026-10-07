@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<title>Milk Bill Management</title>
+<meta name="description" content="Daily milk records, monthly customer bills and payments for milk sellers. Works offline.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Milk Bills">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="icons/favicon-64.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<!--APP-START-->
+<div class="boot" id="boot" aria-hidden="true"><img src="icons/logo.svg" alt="" width="96" height="96"><b>Milk Bill Management</b></div>
+<div class="shell" id="app">
+  <aside class="sidebar" aria-label="Main">
+    <div class="brand">
+      <img src="icons/logo.svg" alt="" width="36" height="36">
+      <div><b>Milk Bill Management</b><span id="brandSub">Milk records</span></div>
+    </div>
+    <nav class="stack" style="gap:2px" id="sideNav"></nav>
+    <div class="sidebar-foot" id="sideFoot"></div>
+  </aside>
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn" id="backBtn" data-act="back" aria-label="Back" hidden>
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+      <img class="mark" id="brandMark" src="icons/logo.svg" alt="" width="40" height="40">
+      <div class="title-wrap">
+        <h1 class="page-title" id="pageTitle">Milk Bill Management</h1>
+        <div class="page-sub" id="pageSub"></div>
+      </div>
+      <div class="row" id="topActions"></div>
+    </header>
+    <main class="content" id="view" aria-live="polite">
+      <div class="skeleton" aria-label="Loading"><span></span><span></span><span></span><span></span></div>
+    </main>
+  </div>
+  <nav class="tabbar" id="tabbar" aria-label="Main"></nav>
+  <div id="dialogRoot"></div>
+  <div id="toastRoot" role="status" aria-live="polite"></div>
+  <input type="file" id="restoreInput" accept=".json,application/json" hidden>
+</div>
+<!--APP-END-->
+<script src="js/nepali-calendar.js"></script>
+<script src="js/ledger.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/bill-image.js"></script>
+<script src="js/platform.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "milk-bill-management",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Milk Bill Management - daily milk records and monthly bills for milk sellers (offline Android app)",
+  "scripts": {
+    "test": "node tests/run-tests.js",
+    "build:www": "node tools/build-www.js",
+    "sync": "node tools/build-www.js && npx cap sync android"
+  },
+  "dependencies": {
+    "@capacitor/android": "8.5.2",
+    "@capacitor/app": "8.1.2",
+    "@capacitor/core": "8.5.2",
+    "@capacitor/filesystem": "8.1.4",
+    "@capacitor/share": "8.0.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.5.2",
+    "@resvg/resvg-js": "^2.6.2"
+  }
+}

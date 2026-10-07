@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Milk can with a milk drop. The only logo source: run `node tools/make-icons.js` after changing it. -->
+  <g fill="#2170CC">
+    <rect x="221" y="34" width="70" height="28" rx="12"/>
+    <rect x="180" y="58" width="152" height="40" rx="14"/>
+    <rect x="204" y="94" width="104" height="66"/>
+    <path d="M204 154h104c34 0 62 26 70 60l4 18H130l4-18c8-34 36-60 70-60z"/>
+    <rect x="124" y="222" width="264" height="252" rx="44"/>
+  </g>
+  <g fill="none" stroke="#2170CC" stroke-width="22" stroke-linecap="round">
+    <path d="M132 252c-50 0-50 92 0 92"/>
+    <path d="M380 252c50 0 50 92 0 92"/>
+  </g>
+  <path fill="#FFFFFF" d="M256 286c0 0-46 58-46 90a46 46 0 0 0 92 0c0-32-46-90-46-90z"/>
+</svg>

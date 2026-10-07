@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bill preview (developer check)</title>
+<link rel="stylesheet" href="../css/app.css">
+<style>
+  body { background: #888; padding: 16px; }
+  img { display: block; width: 1080px; max-width: none; margin-bottom: 24px; }
+</style>
+</head>
+<body>
+<p style="color:#fff;font:16px sans-serif">Developer check: draws sample bills with made-up data. Not part of the app.</p>
+<div id="out"></div>
+<script src="../js/nepali-calendar.js"></script>
+<script src="../js/ledger.js"></script>
+<script src="../js/bill-image.js"></script>
+<script>
+  (async function () {
+    var L = Ledger, Cal = NepaliCalendar;
+    var s = L.emptyState();
+    s.meta.settings.shopAddress = 'Ward 5, Example Village';
+    s.meta.settings.shopPhone = '98XXXXXXXX';
+    var a = L.addCustomer(s, L.validateCustomer({ name: 'Sample Customer With A Long Name', address: 'Near the school, Tole 3, a long address line to test wrapping', phone: '9800000000', rate: '150', usual: '1' }, s.meta.settings).value);
+    var b = L.addCustomer(s, L.validateCustomer({ name: 'नमुना ग्राहक', rate: '150', usual: '0.5' }, s.meta.settings).value);
+    for (var d = 1; d <= 31; d++) {
+      if (d % 7 !== 0) L.setEntry(s, 2083, 6, d, a.id, d % 3 ? 1 : 1.5, d > 20 ? 160 : 150);
+      if (d % 2) L.setEntry(s, 2083, 6, d, b.id, 0.5, 150);
+    }
+    L.addPayment(s, a.id, '2083-06', 1000, '2083-06-02', '', 'advance');
+    for (d = 1; d <= 10; d++) L.setEntry(s, 2083, 5, d, a.id, 1, 150);
+    var logo = new Image();
+    logo.src = '../icons/logo.svg';
+    await new Promise(function (r) { logo.onload = r; logo.onerror = r; });
+    await BillImage.fontsReady();
+    var today = { y: 2083, m: 7, d: 1 };
+    var bills = [
+      BillImage.drawBill(L.monthBill(s, a.id, 2083, 6, { includeOldDue: true }), a, s.meta.settings, logo, today),
+      BillImage.drawBill(L.monthBill(s, b.id, 2083, 6), b, s.meta.settings, logo, today),
+      BillImage.drawReport(L.monthReport(s, 2083, 6), 2083, 6, s.meta.settings, logo, today)
+    ];
+    // a paid bill
+    var pb = L.monthBill(s, b.id, 2083, 6);
+    L.addPayment(s, b.id, '2083-06', pb.toPayPaisa / 100, '2083-07-01', 'Bill paid', 'bill');
+    bills.splice(2, 0, BillImage.drawBill(L.monthBill(s, b.id, 2083, 6), b, s.meta.settings, logo, today));
+    var out = document.getElementById('out');
+    for (var i = 0; i < bills.length; i++) {
+      var img = new Image();
+      img.id = 'img' + i;
+      img.src = URL.createObjectURL(await BillImage.toBlob(bills[i]));
+      out.appendChild(img);
+    }
+    document.title = 'ready';
+  })();
+</script>
+</body>
+</html>

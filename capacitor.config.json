@@ -1,0 +1,14 @@
+{
+  "appId": "com.milkbillmanagement.app",
+  "appName": "Milk Bill Management",
+  "webDir": "www",
+  "android": {
+    "backgroundColor": "#FFFFFF"
+  },
+  "plugins": {
+    "SystemBars": {
+      "insetsHandling": "disable",
+      "style": "LIGHT"
+    }
+  }
+}
